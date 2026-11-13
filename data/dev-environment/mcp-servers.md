@@ -1,12 +1,12 @@
 ---
 provenance: [sources/2026-11-13-censimento-server-mcp-opencode-globale-progetto-family-bot-2]
-status: in-progress
+status: reference
 title: Censimento dei server MCP configurati in OpenCode
 type: Reference
 ---
 # Censimento dei server MCP configurati in OpenCode
 
-Aggiornato il 2026-11-13: i server MCP globali stanno passando sotto la gestione di Cartographer come descrittori `mcp/*.json` della KB; i file di configurazione locali non li dichiarano più a mano.
+Aggiornato il 2026-11-13: i server MCP globali sono passati sotto la gestione di Cartographer come descrittori `mcp/*.json` della KB; i file di configurazione locali non li dichiarano più a mano. Approvati e sincronizzati: `laya`, `tokensave` e `tinyfish` sono materializzati in `$HOME/opencode.json` e i rispettivi tool rispondono.
 
 ## Dove vivono le configurazioni
 
