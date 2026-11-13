@@ -1,5 +1,12 @@
 # Log
 
+## 2026-11-13T14:54:46Z
+
+concept_batch (3 operation(s)):
+- dev-environment/mcp-servers (+ index entry)
+- dev-environment/mcp-config-duplicata (+ index entry)
+- dev-environment/mcp-segreti-in-chiaro (+ index entry)
+
 ## 2026-11-13T14:54:11Z
 
 source_register: sources/2026-11-13-censimento-server-mcp-opencode-globale-progetto-family-bot-2
