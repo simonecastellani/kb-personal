@@ -1,5 +1,9 @@
 # Log
 
+## 2026-11-13T17:02:33Z
+
+concept_patch: dev-environment/mcp-servers
+
 ## 2026-11-13T16:55:43Z
 
 Censimento plugin OpenCode in mcp-servers: @lmnr-ai/opencode-plugin (Laminar tracing) e context-mode documentati con dove e cosa fanno; chiarito che i plugin OpenCode non sono artefatti Cartographer.

@@ -36,7 +36,7 @@ I plugin OpenCode si dichiarano nel campo `plugins` dei config del client e **no
 | Plugin | Dove | Cosa fa |
 |---|---|---|
 | context-mode | globale (`$HOME/.config/opencode/opencode.jsonc`) | gestione del contesto delle sessioni e dei grandi output |
-| @lmnr-ai/opencode-plugin | progetto family-bot (`$HOME/project/family-bot/opencode.json`) | plugin Laminar: traccia le sessioni OpenCode in Laminar (un trace per turno, con chiamate LLM e tool); complementare al server MCP `laminar` |
+| @lmnr-ai/opencode-plugin | globale (`$HOME/.config/opencode/opencode.jsonc`), in forma `{package, options}` con `projectApiKey` e `baseUrl` | plugin Laminar: traccia le sessioni OpenCode in Laminar (un trace per turno, con chiamate LLM e tool); complementare al server MCP `laminar`. Base URL: `http://192.168.178.204` (istanza self-hosted, gRPC 8001, come da `.env` del progetto family-bot); le opzioni del plugin hanno precedenza sulle variabili `LMNR_*` |
 
 Plugin Cartographer installati (in `$HOME/.config/opencode/plugins/`): bootstrap e write-findings, dal bundle.
 
