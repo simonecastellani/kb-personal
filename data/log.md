@@ -1,5 +1,9 @@
 # Log
 
+## 2026-11-13T14:50:11Z
+
+concept_patch: sources/2026-11-13-sessione-agente-2026-11-13-integrazione-server-laya-locale-c
+
 ## 2026-11-13T14:49:44Z
 
 concept_batch (4 operation(s)):

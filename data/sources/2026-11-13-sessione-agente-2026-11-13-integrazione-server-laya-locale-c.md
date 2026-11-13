@@ -3,7 +3,8 @@ type: Source
 title: "Sessione agente 2026-11-13: integrazione server Laya locale con OpenCode"
 source_kind: thread
 timestamp: "2026-11-13T15:45:00+01:00"
-ingest_status: pending
+ingest_status: ingested
+ingested_at: "2026-11-13T15:50:00+01:00"
 ---
 Distillazione della sessione OpenCode del 2026-11-13 (ore ~14:00–15:45). Puntatori = fasi della conversazione.
 
