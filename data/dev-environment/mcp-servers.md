@@ -29,10 +29,18 @@ Censimento del 2026-11-13 di tutti i server MCP configurati per OpenCode sul cli
 | sonarqube | local | progetto family-bot | `docker run … mcp/sonarqube` | disabilitato | analisi SonarQube; richiede `SONARQUBE_URL`/`SONARQUBE_ORG` |
 | codegraph | local | progetto family-bot | `codegraph serve --mcp` | disabilitato | code graph alternativo, `codemode: false` |
 
-## Plugin (contesto)
+## Plugin OpenCode
 
-- Globali: `context-mode` (dichiarato in `opencode.jsonc`); `$HOME/.config/opencode/plugins/` contiene i plugin cartographer (bootstrap, write-findings).
-- Progetto family-bot: `@lmnr-ai/opencode-plugin`.
+I plugin OpenCode si dichiarano nel campo `plugins` dei config del client e **non sono un tipo di artefatto Cartographer**: restano configurazione nativa del client (i plugin di Cartographer — cartelle con `cartographer-plugin.yaml` — sono un'altra cosa).
+
+| Plugin | Dove | Cosa fa |
+|---|---|---|
+| context-mode | globale (`$HOME/.config/opencode/opencode.jsonc`) | gestione del contesto delle sessioni e dei grandi output |
+| @lmnr-ai/opencode-plugin | progetto family-bot (`$HOME/project/family-bot/opencode.json`) | plugin Laminar: traccia le sessioni OpenCode in Laminar (un trace per turno, con chiamate LLM e tool); complementare al server MCP `laminar` |
+
+Plugin Cartographer installati (in `$HOME/.config/opencode/plugins/`): bootstrap e write-findings, dal bundle.
+
+Nota: `@lmnr-ai/opencode-plugin` è nella cache plugin di OpenCode (`$HOME/.cache/opencode/npm/@lmnr-ai/opencode-plugin@latest`), non in `node_modules` del progetto.
 
 ## Server gestiti da Cartographer
 
