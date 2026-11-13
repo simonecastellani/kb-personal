@@ -2,6 +2,10 @@
 
 ## 2026-11-13T17:02:33Z
 
+Plugin Laminar @lmnr-ai/opencode-plugin spostato in globale: opencode.jsonc con forma {package, options} (projectApiKey + baseUrl http://192.168.178.204). Pagina mcp-servers aggiornata.
+
+## 2026-11-13T17:02:33Z
+
 concept_patch: dev-environment/mcp-servers
 
 ## 2026-11-13T16:55:43Z
