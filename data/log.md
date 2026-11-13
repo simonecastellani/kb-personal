@@ -1,5 +1,9 @@
 # Log
 
+## 2026-11-13T14:54:55Z
+
+concept_patch: sources/2026-11-13-censimento-server-mcp-opencode-globale-progetto-family-bot-2
+
 ## 2026-11-13T14:54:46Z
 
 concept_batch (3 operation(s)):

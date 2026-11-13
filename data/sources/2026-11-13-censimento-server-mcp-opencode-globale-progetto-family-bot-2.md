@@ -3,8 +3,9 @@ type: Source
 title: "Censimento server MCP OpenCode (globale + progetto family-bot), 2026-11-13"
 source_kind: document
 timestamp: "2026-11-13T16:00:00+01:00"
-ingest_status: pending
+ingest_status: ingested
 shape: source
+ingested_at: "2026-11-13T16:05:00+01:00"
 ---
 Censimento eseguito il 2026-11-13 leggendo le configurazioni OpenCode sul client.
 
