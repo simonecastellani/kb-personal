@@ -1,56 +1,59 @@
 ---
 provenance: [sources/2026-11-13-censimento-server-mcp-opencode-globale-progetto-family-bot-2]
-status: stable
+status: in-progress
 title: Censimento dei server MCP configurati in OpenCode
 type: Reference
 ---
 # Censimento dei server MCP configurati in OpenCode
 
-Censimento del 2026-11-13 di tutti i server MCP configurati per OpenCode sul client.
+Aggiornato il 2026-11-13: i server MCP globali stanno passando sotto la gestione di Cartographer come descrittori `mcp/*.json` della KB; i file di configurazione locali non li dichiarano più a mano.
 
 ## Dove vivono le configurazioni
 
-- `$HOME/.config/opencode/opencode.json` — globale
-- `$HOME/.config/opencode/opencode.jsonc` — globale (entrambi i file sono attivi: i server di entrambi risultano connessi)
-- `$HOME/project/family-bot/opencode.json` — progetto family-bot
-- `$HOME/opencode.json` — config di **workspace** generata da Cartographer (binding `$HOME` → kb-personal): vi è materializzato il server MCP `laya`
+| File | Proprietà | Contenuto MCP |
+|---|---|---|
+| `$HOME/.config/opencode/opencode.json` | globale; a mano restano solo i plugin | `mcp.cartographer`, il bridge che Cartographer riscrive a ogni sync. Nessun altro server |
+| `$HOME/opencode.json` | generata da Cartographer, binding `$HOME` → kb-personal | `laya`, `tokensave`, `tinyfish`, materializzati dai descrittori della KB |
+| `$HOME/project/family-bot/opencode.json` | progetto family-bot, binding → family-bot-kb | `tokensave`, `deepwiki`, `laminar`, `sonarqube` (off), `codegraph` (off) |
 
-## Server
+Il vecchio `$HOME/.config/opencode/opencode.jsonc` era un secondo file globale attivo, con plugin e `tinyfish`: il suo contenuto è stato consolidato in `opencode.json` e il file eliminato.
 
-| Server | Tipo | Dove | Avvio / URL | Stato | Scopo |
-|---|---|---|---|---|---|
-| tokensave | local | globale | `tokensave serve` (brew) | attivo | code graph MCP |
-| cartographer | local | globale | `cartographer mcp --provider opencode` (brew) | attivo | server KB (Cartographer) |
-| laya | local | workspace `$HOME` — artefatto `mcp/laya.json` di kb-personal | `docker run … laya-mcp:latest` con `-e LAYA_BASE_URL` | attivo | motore decisionale — vedere [[dev-environment/laya-opencode]] |
-| tinyfish | remote | globale (jsonc) | `https://agent.tinyfish.ai/mcp` | attivo | web search/fetch/automation (header API key) |
-| tokensave | local | progetto family-bot | `tokensave serve` | attivo | duplicato del globale |
-| deepwiki | remote | progetto family-bot | `https://mcp.deepwiki.com/mcp` | attivo | wiki di repository |
-| laminar | remote | progetto family-bot | `http://192.168.178.204:8000/v1/mcp` | attivo | osservabilità LLM (header Bearer) |
-| sonarqube | local | progetto family-bot | `docker run … mcp/sonarqube` | disabilitato | analisi SonarQube; richiede `SONARQUBE_URL`/`SONARQUBE_ORG` |
-| codegraph | local | progetto family-bot | `codegraph serve --mcp` | disabilitato | code graph alternativo, `codemode: false` |
+## Server gestiti da Cartographer (kb-personal)
+
+| Server | Descrittore | Trasporto | Materializzato in | Note |
+|---|---|---|---|---|
+| laya | `mcp/laya.json` | stdio | `$HOME/opencode.json` | `docker run` sulla rete `laya_default`; vedere [[dev-environment/laya-opencode]] |
+| tokensave | `mcp/tokensave.json` | stdio | `$HOME/opencode.json` | binario Homebrew con `serve`; il path assoluto è nel descrittore ed è specifico della macchina |
+| tinyfish | `mcp/tinyfish.json` | http | `$HOME/opencode.json` | header `X-API-Key: ${TINYFISH_API_KEY}`, che OpenCode traduce in `{env:TINYFISH_API_KEY}` |
+| cartographer | nessuno (entry propria) | stdio | `$HOME/.config/opencode/opencode.json` | Cartographer scrive `cartographer mcp --provider opencode` da sé: un descrittore sarebbe circolare |
+
+Ogni descrittore va approvato una volta con `cartographer approve mcp <nome> --kb kb-personal`, legato all'hash del contenuto; una modifica richiede una nuova approvazione.
+
+## Server nativi, fuori da questa KB
+
+`deepwiki`, `laminar`, `sonarqube` e `codegraph` restano nel config del progetto family-bot (perimetro di family-bot-kb). `tokensave` vi compare ancora come override locale del server globale.
 
 ## Plugin OpenCode
 
-I plugin OpenCode si dichiarano nel campo `plugins` dei config del client e **non sono un tipo di artefatto Cartographer**: restano configurazione nativa del client (i plugin di Cartographer — cartelle con `cartographer-plugin.yaml` — sono un'altra cosa).
+I plugin non sono un tipo di artefatto Cartographer: restano configurazione nativa del client.
 
 | Plugin | Dove | Cosa fa |
 |---|---|---|
-| context-mode | globale (`$HOME/.config/opencode/opencode.jsonc`) | gestione del contesto delle sessioni e dei grandi output |
-| @lmnr-ai/opencode-plugin | globale (`$HOME/.config/opencode/opencode.jsonc`), in forma `{package, options}` con `projectApiKey` e `baseUrl` | plugin Laminar: traccia le sessioni OpenCode in Laminar (un trace per turno, con chiamate LLM e tool); complementare al server MCP `laminar`. Base URL: `http://192.168.178.204` (istanza self-hosted, gRPC 8001, come da `.env` del progetto family-bot); le opzioni del plugin hanno precedenza sulle variabili `LMNR_*` |
+| context-mode | globale (`opencode.json`) | gestione del contesto delle sessioni e dei grandi output |
+| @lmnr-ai/opencode-plugin | globale (`opencode.json`), forma `{package, options}` | traccia le sessioni in Laminar (self-hosted, gRPC 8001, `baseUrl` sulla rete locale); le opzioni hanno precedenza sulle variabili `LMNR_*` |
 
-Plugin Cartographer installati (in `$HOME/.config/opencode/plugins/`): bootstrap e write-findings, dal bundle.
-
-Nota: `@lmnr-ai/opencode-plugin` è nella cache plugin di OpenCode (`$HOME/.cache/opencode/npm/@lmnr-ai/opencode-plugin@latest`), non in `node_modules` del progetto.
-
-## Server gestiti da Cartographer
-
-`laya` è il primo server MCP gestito come artefatto: il descrittore vive nella KB (`mcp/laya.json`), si approva una volta con `cartographer approve mcp laya --kb kb-personal` (legato all'hash del contenuto) e `cartographer sync` lo materializza nel config del workspace che serve la KB. La entry manuale che stava nel config globale è stata rimossa: Cartographer è l'unico proprietario della configurazione.
+Plugin Cartographer installati (`$HOME/.config/opencode/plugins/`): bootstrap e write-findings, dal bundle.
 
 ## Credenziali
 
-Due server usano header di autenticazione (tinyfish `X-API-Key`, laminar `Authorization: Bearer`). I valori sono deliberatamente non registrati qui: sono in chiaro nelle rispettive configurazioni. Vedere [[dev-environment/mcp-segreti-in-chiaro]].
+- **tinyfish**: nessun valore nella KB né nei config. Il descrittore referenzia `${TINYFISH_API_KEY}`, esportata in `$HOME/.zshrc`. OpenCode sostituisce `{env:TINYFISH_API_KEY}` al caricamento; se la variabile manca la sostituzione è la stringa vuota e il server risponde 401, senza errore di configurazione.
+- **laminar**: il bearer è ancora in chiaro in `$HOME/project/family-bot/opencode.json` e il `projectApiKey` del plugin in `opencode.json`. Fuori dal perimetro MCP globale: da trattare a parte.
 
-## Quesiti aperti
+## Nota sulla forma
 
-- [[dev-environment/mcp-config-duplicata]] — tokensave duplicato, `opencode.json` + `opencode.jsonc`, entry legacy `mcp.cartographer`.
-- [[dev-environment/mcp-segreti-in-chiaro]] — spostare le due credenziali in env/SOPS.
+OpenCode depreca `mcp.<nome>` in favore di `mcp.servers.<nome>`, ma Cartographer (D1172) scrive ancora la forma flat, che lo schema accetta come deprecata. Finché è così, una entry scritta a mano in `mcp.servers` accanto a quella di Cartographer duplica il server: la forma flat è l'unica che sopravvive al sync.
+
+## Quesiti
+
+- [[dev-environment/mcp-config-duplicata]] — risolto per i file globali: un solo file, una sola dichiarazione per server, duplicato `mcp.servers.cartographer` rimosso. Resta il doppio `tokensave` globale/family-bot.
+- [[dev-environment/mcp-segreti-in-chiaro]] — risolto per tinyfish; resta laminar.

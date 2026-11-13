@@ -1,5 +1,9 @@
 # Log
 
+## 2026-11-13T18:00:18Z
+
+concept_write: dev-environment/mcp-servers
+
 ## 2026-11-13T17:02:33Z
 
 Plugin Laminar @lmnr-ai/opencode-plugin spostato in globale: opencode.jsonc con forma {package, options} (projectApiKey + baseUrl http://192.168.178.204). Pagina mcp-servers aggiornata.
