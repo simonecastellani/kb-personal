@@ -1,0 +1,14 @@
+{
+  "type": "stdio",
+  "command": "docker",
+  "args": [
+    "run",
+    "-i",
+    "--rm",
+    "--network",
+    "laya_default",
+    "-e",
+    "LAYA_BASE_URL=http://laya-serve:8000",
+    "laya-mcp:latest"
+  ]
+}
