@@ -1,5 +1,9 @@
 # Log
 
+## 2026-11-13T16:13:34Z
+
+concept_patch: dev-environment/mcp-servers
+
 ## 2026-11-13T14:54:55Z
 
 Censimento MCP in dev-environment: creata la pagina mcp-servers (9 server tra globale e progetto family-bot) e due quesiti aperti (config duplicata, credenziali in chiaro). Gate superato.
