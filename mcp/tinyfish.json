@@ -1,0 +1,7 @@
+{
+  "type": "http",
+  "url": "https://agent.tinyfish.ai/mcp?source=tinyfish_cli&client=opencode&connect_attempt_id=43b84484-0ffb-44cf-be29-1d3f0a1799ee",
+  "headers": {
+    "X-API-Key": "${TINYFISH_API_KEY}"
+  }
+}
