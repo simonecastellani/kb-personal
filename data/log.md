@@ -1,5 +1,9 @@
 # Log
 
+## 2026-11-13T20:55:32Z
+
+[dev-environment] 2026-11-13 — Refactor delle configurazioni MCP globali di OpenCode. - Creati i descrittori `mcp/tokensave.json` (stdio) e `mcp/tinyfish.json` (http, `X-API-Key: ${TINYFISH_API_KEY}`), approvati con `cartographer approve mcp … --yes` e sincronizzati. - Verificato che Cartographer scrive la propria entry in forma flat `mcp.cartographer` a ogni sync: la copia in `mcp.servers.cartographer` era il duplicato ed è stata rimossa. - Consolidati i due file globali in `$HOME/.config/opencode/opencode.json` (solo plugin + entry di Cartographer); `opencode.jsonc` eliminato. Backup dei file originali in `/tmp/opencode/mcp-backup/`. - `$HOME/opencode.json` ora materializza `laya`, `tokensave`, `tinyfish`; i tool di tokensave e tinyfish rispondono con `{env:TINYFISH_API_KEY}`. - Chiusi [[dev-environment/mcp-config-duplicata]] e [[dev-environment/mcp-segreti-in-chiaro]] per la parte globale. Restano: doppio `tokensave` in `$HOME/project/family-bot/opencode.json`, bearer laminar in chiaro, `projectApiKey` del plugin lmnr in chiaro. - Nota di prodotto: OpenCode depreca `mcp.<nome>` in favore di `mcp.servers.<nome>`, ma Cartographer emette ancora la forma flat (D1172).
+
 ## 2026-11-13T20:54:56Z
 
 concept_patch: dev-environment/mcp-servers
