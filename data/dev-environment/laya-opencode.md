@@ -13,7 +13,7 @@ type: Reference
 - **laya-serve** — container Docker da `compose.yaml` + `compose.http.yaml` nel repo `$HOME/tools/laya`; ascolta su `127.0.0.1:8000` (endpoint Jev-compatibile `POST /v1/systemone`), `restart: unless-stopped`, checkpoint residenti: english, multilingual, typed-decisions (CPU). Riavvio: `docker compose -f compose.yaml -f compose.http.yaml up -d laya-serve`.
 - **laya-mcp:latest** — immagine proxy costruita da `$HOME/.local/share/laya-mcp/Dockerfile`: base `laya-laya-serve` + extra `laya[mcp]` (~1 MB). In modalità remote (con `LAYA_BASE_URL`) risponde in ~1s senza torch in esecuzione. Ricostruire dopo un `docker compose build`: `docker build -t laya-mcp:latest $HOME/.local/share/laya-mcp`.
 - **OpenCode** — server MCP `laya` globale in `$HOME/.config/opencode/opencode.json`: `docker run -i --rm --network laya_default -e LAYA_BASE_URL=http://laya-serve:8000 laya-mcp:latest`. Espone 10 tool: laya_predict, laya_predict_batch, laya_decide, laya_preset, laya_shortlist, laya_route, laya_route_batch, laya_status, laya_predict_long, laya_tournament.
-- **Skill** `$HOME/.config/opencode/skills/laya/SKILL.md` — insegna all'agente quando usare i tool e come operare il servizio.
+- **Skill** — artefatto `skills/laya/SKILL.md` di kb-personal, materializzato da Cartographer in `.opencode/skills/laya/` del workspace `$HOME` (con blocco di provenance): insegna all'agente quando usare i tool e come operare il servizio. Si modifica solo nella KB (`artifact_write` o git push), non nella copia materializzata.
 
 Il `-e LAYA_BASE_URL` nel comando docker è obbligatorio: vedere [[dev-environment/docker-run-mcp-env]].
 

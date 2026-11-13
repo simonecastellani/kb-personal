@@ -1,5 +1,9 @@
 # Log
 
+## 2026-11-13T16:37:16Z
+
+concept_patch: dev-environment/laya-opencode
+
 ## 2026-11-13T16:13:39Z
 
 Server MCP laya migrato da configurazione manuale ad artefatto Cartographer: creato mcp/laya.json, approvato, rimosso l'entry manuale globale, sync materializza nel config di workspace $HOME/opencode.json. Pagina mcp-servers aggiornata.
