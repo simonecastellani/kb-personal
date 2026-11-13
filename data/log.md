@@ -1,5 +1,11 @@
 # Log
 
+## 2026-11-13T18:00:53Z
+
+concept_batch (2 operation(s)):
+- dev-environment/mcp-config-duplicata
+- dev-environment/mcp-segreti-in-chiaro
+
 ## 2026-11-13T18:00:18Z
 
 concept_write: dev-environment/mcp-servers
