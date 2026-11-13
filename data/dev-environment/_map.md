@@ -1,6 +1,6 @@
 ---
 type: Map
-title: Ambiente di sviluppo
+title: Dev environment
 kind: map
 ---
-# Ambiente di sviluppo
+# Dev environment

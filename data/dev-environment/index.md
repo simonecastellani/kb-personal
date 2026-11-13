@@ -1,5 +1,5 @@
 ---
 type: Index
-title: Ambiente di sviluppo
+title: Dev environment
 ---
-# Ambiente di sviluppo
+# Dev environment
