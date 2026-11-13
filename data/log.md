@@ -1,5 +1,9 @@
 # Log
 
+## 2026-11-13T16:37:32Z
+
+Skill laya migrata da copia manuale ad artefatto della KB (skills/laya/SKILL.md), materializzata in .opencode/skills/laya del workspace $HOME con provenance. Pagina laya-opencode aggiornata.
+
 ## 2026-11-13T16:37:24Z
 
 Skill laya migrata da copia manuale ad artefatto della KB (skills/laya/SKILL.md), materializzata in .opencode/skills/laya del workspace $HOME con provenance. Pagina laya-opencode aggiornata.
