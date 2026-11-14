@@ -23,7 +23,7 @@ Il vecchio `$HOME/.config/opencode/opencode.jsonc` era un secondo file globale a
 | Server | Descrittore | Trasporto | Materializzato in | Note |
 |---|---|---|---|---|
 | laya | `mcp/laya.json` | stdio | `$HOME/opencode.json` | `docker run` sulla rete `laya_default`; vedere [[dev-environment/laya-opencode]] |
-| tokensave | `mcp/tokensave.json` | stdio | `$HOME/opencode.json` | binario Homebrew con `serve`; il path assoluto è nel descrittore ed è specifico della macchina |
+| tokensave | `mcp/tokensave.json` | stdio | `$HOME/opencode.json` | binario Homebrew con `serve`; il descrittore invoca `tokensave` dal PATH, così lo stesso file vale su ogni macchina |
 | tinyfish | `mcp/tinyfish.json` | http | `$HOME/opencode.json` | header `X-API-Key: ${TINYFISH_API_KEY}`, che OpenCode traduce in `{env:TINYFISH_API_KEY}` |
 | cartographer | nessuno (entry propria) | stdio | `$HOME/.config/opencode/opencode.json` | Cartographer scrive `cartographer mcp --provider opencode` da sé: un descrittore sarebbe circolare |
 
