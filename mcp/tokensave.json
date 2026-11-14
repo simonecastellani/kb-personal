@@ -1,6 +1,6 @@
 {
   "type": "stdio",
-  "command": "/home/linuxbrew/.linuxbrew/bin/tokensave",
+  "command": "tokensave",
   "args": [
     "serve"
   ]
