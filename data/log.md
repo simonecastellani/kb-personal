@@ -1,5 +1,10 @@
 # Log
 
+## 2026-11-18T15:22:18Z
+
+concept_batch (1 operation(s)):
+- dev-environment/mcp-servers
+
 ## 2026-11-14T15:40:00Z
 
 concept_patch: dev-environment/mcp-servers

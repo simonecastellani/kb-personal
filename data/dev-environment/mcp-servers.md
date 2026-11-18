@@ -6,7 +6,7 @@ type: Reference
 ---
 # Censimento dei server MCP configurati in OpenCode
 
-Aggiornato il 2026-11-13: i server MCP globali sono passati sotto la gestione di Cartographer come descrittori `mcp/*.json` della KB; i file di configurazione locali non li dichiarano più a mano. Approvati e sincronizzati: `laya`, `tokensave` e `tinyfish` sono materializzati in `$HOME/opencode.json` e i rispettivi tool rispondono.
+Aggiornato il 2026-11-13: i server MCP globali sono passati sotto la gestione di Cartographer come descrittori `mcp/*.json` della KB; i file di configurazione locali non li dichiarano più a mano. Approvati e sincronizzati: `laya`, `tokensave`, `tinyfish` e `drawio` sono materializzati in `$HOME/opencode.json` e i rispettivi tool rispondono. Il 2026-11-18 si è aggiunto `drawio`.
 
 ## Dove vivono le configurazioni
 
@@ -25,9 +25,12 @@ Il vecchio `$HOME/.config/opencode/opencode.jsonc` era un secondo file globale a
 | laya | `mcp/laya.json` | stdio | `$HOME/opencode.json` | `docker run` sulla rete `laya_default`; vedere [[dev-environment/laya-opencode]] |
 | tokensave | `mcp/tokensave.json` | stdio | `$HOME/opencode.json` | binario Homebrew con `serve`; il descrittore invoca `tokensave` dal PATH, così lo stesso file vale su ogni macchina |
 | tinyfish | `mcp/tinyfish.json` | http | `$HOME/opencode.json` | header `X-API-Key: ${TINYFISH_API_KEY}`, che OpenCode traduce in `{env:TINYFISH_API_KEY}` |
+| drawio | `mcp/drawio.json` | stdio | `$HOME/opencode.json` | `npx -y @drawio/mcp` (serve Node.js); genera diagrammi `.drawio` e li apre nell'editor draw.io nel browser; nessuna credenziale |
 | cartographer | nessuno (entry propria) | stdio | `$HOME/.config/opencode/opencode.json` | Cartographer scrive `cartographer mcp --provider opencode` da sé: un descrittore sarebbe circolare |
 
 Ogni descrittore va approvato una volta con `cartographer approve mcp <nome> --kb kb-personal`, legato all'hash del contenuto; una modifica richiede una nuova approvazione.
+
+`drawio` è registrato nella variante MCP Tool Server via `npx`: i diagrammi si aprono in una nuova scheda dell'editor draw.io nel browser. Restano non registrate le due alternative della documentazione ufficiale (https://www.drawio.com/docs/manual/generate/drawio-mcp-server/): l'MCP App Server hosted su `https://mcp.draw.io/mcp` e il self-hosted Docker `jgraph/drawio-mcp` su `http://127.0.0.1:3001/mcp`.
 
 ## Server nativi, fuori da questa KB
 
