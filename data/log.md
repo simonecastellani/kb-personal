@@ -1,5 +1,9 @@
 # Log
 
+## 2026-11-18T15:24:08Z
+
+[dev-environment] Aggiunto il server MCP drawio (variante Tool Server, stdio via `npx -y @drawio/mcp`): descrittore `mcp/drawio.json` approvato e materializzato in `$HOME/opencode.json`; census `dev-environment/mcp-servers` aggiornato. Nel corso del sync è emerso `mcp/tokensave` in trust=approval_stale (assente da `$HOME/opencode.json`): riapprovato e risincronizzato; ora i server del binding `$HOME` sono drawio, laya, tokensave, tinyfish e `cartographer status` è in-sync.
+
 ## 2026-11-18T15:22:18Z
 
 concept_batch (1 operation(s)):
