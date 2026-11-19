@@ -31,3 +31,7 @@ Il `-e LAYA_BASE_URL` nel comando docker è obbligatorio: vedere [[dev-environme
 ## Verifica
 
 Test end-to-end (2026-11-13): "CI rossa dopo merge" → `kind: bug` (98%), `urgent: 0.75`, ~1s per forward pass. `opencode mcp list` connesso.
+
+## Deploy homelab
+
+- [[dev-environment/laya-homelab]] — provisioning Ansible sulla VM opencode e MCP pubblico su `https://laya.simonecastellani.com/mcp`.
