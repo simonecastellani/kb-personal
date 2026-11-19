@@ -13,3 +13,4 @@ title: Dev environment
 - [Censimento dei server MCP configurati in OpenCode](mcp-servers.md)
 - [Configurazione MCP duplicata tra file e progetti](mcp-config-duplicata.md)
 - [Credenziali MCP in chiaro nelle configurazioni](mcp-segreti-in-chiaro.md)
+- [Laya provisionata dal repo homelab sulla VM opencode](laya-homelab.md)
